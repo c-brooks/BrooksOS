@@ -1,4 +1,5 @@
 # Ignore compiled files
 *.iso
 *.o
-/boot/kernel.elf
+/iso/boot/kernel.elf
+kernel.elf
