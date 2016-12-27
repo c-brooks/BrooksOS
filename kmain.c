@@ -45,21 +45,39 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
     char *fb = (char *) 0x000B8000;
 
     fb[i] = c;
-    fb[ i + 1 ] = ((fg & 0x0F) << 4) | (bg & 0x0F);
+    fb[i+1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
+}
+
+/** write:
+ *  Writes an array of chars of length len at position cursorStart
+ *
+ *  @param buf         The array of characters
+ *  @param len         The length of the array
+ *  @param cursorStart The starting position of the cursor
+ *  @return            The end position of the cursor
+ */
+unsigned int write(char *buf, unsigned int len, unsigned int cursorStart) {
+  unsigned int cursorPos = cursorStart;
+  unsigned int i = 0;
+  fb_move_cursor(cursorPos);
+  for ( ; i < len; i++) {
+    if (!buf[i]) {
+      break;
+    }
+    fb_write_cell((cursorPos)*2, buf[i], FB_GREEN, FB_DARK_GREY);
+    fb_move_cursor(cursorPos);
+    cursorPos++;
+  }
+  fb_move_cursor(cursorPos);
+  return cursorPos;
 }
 
 /** kmain:
  *  Driver function.
 */
 int kmain() {
-    // Write a message to the FrameBuffer in pos. (0,0)
+    // Write a message to the FrameBuffer in pos. 0x01E0 (row 6 col 1)
     char msg[] = "Hello, BrooksOS!";
-    int i = 0;
-    while (msg[i] != 0) {
-      fb_write_cell(2*i, msg[i], FB_GREEN, FB_DARK_GREY);
-      i++;
-    }
-    // Set cursor to row 6, column 0
-    fb_move_cursor(0x01E0);
+    write(msg, 16, 0x01E0);
     return 0;
 }
