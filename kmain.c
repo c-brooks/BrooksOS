@@ -59,6 +59,7 @@ int kmain() {
       fb_write_cell(2*i, msg[i], FB_GREEN, FB_DARK_GREY);
       i++;
     }
-
+    // Set cursor to row 6, column 0
+    fb_move_cursor(0x01E0);
     return 0;
 }
