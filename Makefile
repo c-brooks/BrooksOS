@@ -1,4 +1,4 @@
-OBJECTS = loader.o
+OBJECTS = loader.o io.o kmain.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 				 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
@@ -11,7 +11,7 @@ all: kernel.elf
 kernel.elf: $(OBJECTS)
 		ld $(LDFLAGS) $(OBJECTS) -o kernel.elf
 
-os.iso: kernel.elf
+brooks_os.iso: kernel.elf
 		cp kernel.elf iso/boot/kernel.elf
 		genisoimage -R                              \
 								-b boot/grub/stage2_eltorito    \
@@ -24,7 +24,7 @@ os.iso: kernel.elf
 								-o os.iso                       \
 								iso
 
-run: os.iso
+run: brooks_os.iso
 
 %.o: %.c
 		$(CC) $(CFLAGS)  $< -o $@
