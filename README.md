@@ -5,7 +5,7 @@ A simple operating system, following [this book](http://littleosbook.github.io/)
 ```  
   sudo apt-get install build-essential nasm genisoimage
   nasm -f elf32 loader.s
-  make brooks_os.iso
+  make run
 ```
 
 
