@@ -42,17 +42,23 @@ void fb_move_cursor(unsigned short pos)
  */
 void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
 {
-    unsigned char *fb = 0;
+    char *fb = (char *) 0x000B8000;
+
     fb[i] = c;
-    fb[i + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
-    // Do something with fb
+    fb[ i + 1 ] = ((fg & 0x0F) << 4) | (bg & 0x0F);
 }
 
 /** kmain:
  *  Driver function.
 */
 int kmain() {
-    // Write the letter 'A' to the FrameBuffer in pos. (0,0)
-    fb_write_cell(0, 'A', FB_GREEN, FB_DARK_GREY);
+    // Write a message to the FrameBuffer in pos. (0,0)
+    char msg[] = "Hello, BrooksOS!";
+    int i = 0;
+    while (msg[i] != 0) {
+      fb_write_cell(2*i, msg[i], FB_GREEN, FB_DARK_GREY);
+      i++;
+    }
+
     return 0;
 }
