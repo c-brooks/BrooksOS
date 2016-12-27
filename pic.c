@@ -1,6 +1,7 @@
 /* pic.c
  * PIC stands for Programmable Interrupt Controller
  */
+
 #include "io.h"
 
 #define PIC1_PORT_A 0x20
@@ -16,7 +17,7 @@
 /** pic_acknowledge:
 *  Acknowledges an interrupt from either PIC 1 or PIC 2.
 *
-*  @param num The number of the interrupt
+*  @param interrupt The number of the interrupt
 */
 void pic_acknowledge(unsigned integer interrupt)
 {
