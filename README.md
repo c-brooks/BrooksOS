@@ -1,7 +1,7 @@
 # BrooksOS
 A simple operating system, following [this book](http://littleosbook.github.io/).
 
-## Usage
+## Usage (Ubuntu)
 ```  
   sudo apt-get install build-essential nasm genisoimage
   nasm -f elf32 loader.s
@@ -9,9 +9,9 @@ A simple operating system, following [this book](http://littleosbook.github.io/)
 ```
 
 
-.iso files can be run easily with VirtualBox.
+This generates an os.iso file which can be run easily with VirtualBox.
 
 
-Go to New -> Type: Other, Version: Other/Unknown(64 bit).
+Open VirtualBox, then click New -> Type: Other, Version: Other/Unknown(64 bit).
 
-Start the VM and select your .iso file when prompted.
+Start the VM and select your os.iso file when prompted.
