@@ -47,7 +47,10 @@ extern interrupt_handler                  ; The C function
        ; return to the code that got interrupted
        iret
 
-   no_error_code_interrupt_handler 0       ; create handler for interrupt 0
-   no_error_code_interrupt_handler 1       ; create handler for interrupt 1
+   no_error_code_interrupt_handler 0       ; DIVISION BY 0
+   no_error_code_interrupt_handler 1       ; DEBUGGER SINGLE STEP
    ; etc
-   error_code_interrupt_handler    7       ; create handler for interrupt 7
+   error_code_interrupt_handler    7       ; PROCESSOR EXTENSION NOT AVAILABLE
+   no_error_code_interrupt_handler 9       ; PROCESSOR EXTENSION PROTECTION ERROR
+   no_error_code_interrupt_handler 16      ; GET KEYSTROKE
+   no_error_code_interrupt_handler 1Ch     ; SYSTEM TIMER TICK
