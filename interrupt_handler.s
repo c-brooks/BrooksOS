@@ -21,15 +21,23 @@ extern interrupt_handler                  ; The C function
        ; save the registers
        push    eax
        push    ebx
-       ; etc
+       push    ecx
+       push    edx
+       push    esp
        push    ebp
+       push    esi
+       push    edi
 
        ; call the C function
        call    interrupt_handler
 
        ; restore the registers
+       pop     edi
+       pop     esi
        pop     ebp
-       ; etc
+       pop     esp
+       pop     edx
+       pop     ecx
        pop     ebx
        pop     eax
 
