@@ -8,11 +8,11 @@
  */
 void idt_register(int intr_num, void (*isr)(void), int pl)
 {
-    idt[intr].offset_LO = (unsigned short)
+    idt[intr_num].offset_LO = (unsigned short)
             ((unsigned int)(isr) & (unsigned int) 0xFFFF);
-    idt[intr].segsel = (unsigned short) 0x0008;
-    idt[intr].attr = (unsigned short) pl;
-    idt[intr].offset_HI = (unsigned short)
+    idt[intr_num].segsel = (unsigned short) 0x0008;
+    idt[intr_num].attr = (unsigned short) pl;
+    idt[intr_num].offset_HI = (unsigned short)
             ((unsigned int)(isr) >> 16 & (unsigned int) 0xFFFF);
 }
 
