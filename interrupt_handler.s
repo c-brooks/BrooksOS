@@ -1,6 +1,8 @@
 ; Generic Interrupt Handler
 
-%macro no_error_code_interrupt_handler %1
+extern interrupt_handler                  ; The C function
+
+%macro no_error_code_interrupt_handler 1
    global interrupt_handler_%1
    interrupt_handler_%1:
        push    dword 0                     ; push 0 as error code
@@ -8,7 +10,7 @@
        jmp     common_interrupt_handler    ; jump to the common handler
    %endmacro
 
-   %macro error_code_interrupt_handler %1
+   %macro error_code_interrupt_handler 1
    global interrupt_handler_%1
    interrupt_handler_%1:
        push    dword %1                    ; push the interrupt number
@@ -40,4 +42,4 @@
    no_error_code_interrupt_handler 0       ; create handler for interrupt 0
    no_error_code_interrupt_handler 1       ; create handler for interrupt 1
    ; etc
-   error_code_handler              7       ; create handler for interrupt 7
+   error_code_interrupt_handler    7       ; create handler for interrupt 7
