@@ -4,7 +4,6 @@ A simple operating system, following [this book](http://littleosbook.github.io/)
 ## Usage (Ubuntu)
 ```  
   sudo apt-get install build-essential nasm genisoimage
-  nasm -f elf32 loader.s
   make run
 ```
 
