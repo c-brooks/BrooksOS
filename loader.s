@@ -1,5 +1,6 @@
 global loader                   ; the entry symbol for ELF
 extern kmain
+extern idt_register_kbd
 
 MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
 FLAGS        equ 0x0            ; multiboot flags
@@ -23,6 +24,8 @@ loader:                         ; define loader label (entry point in linker scr
     mov esp, kernel_stack + KERNEL_STACK_SIZE
                                 ; point esp to start of stack
 
-call kmain
+call kmain                      ; call kmain
+call idt_register_kbd           ; register the keyboard
+
 .loop:
     jmp .loop                   ; loop

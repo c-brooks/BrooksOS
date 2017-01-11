@@ -5,8 +5,8 @@
 #define DEFAULT_PL 0x8E00   /* Kernel Permission (PL0) */
 #define USER_PL    0xEE00   /* User   Permission (PL4) */
 
-void idt_register(int intr_num, void (*isr)(void), int pl);
-
+void idt_register(int intr_num, int (*isr)(void), int pl);
+void idt_register_kbd();
 
 /* Interrupt Description Table Descriptor
  *
